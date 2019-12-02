@@ -1,0 +1,15 @@
+DATASET:
+  NAME: kinetics
+  ANNOTATION:
+    TYPE: csv
+    FILES:
+      - 'data/kinetics/kinetics400/train.csv'
+      - 'data/kinetics/kinetics400/validate.csv'
+      - 'data/kinetics/kinetics400/test.csv'
+      - 'data/kinetics/kinetics600/train.csv'
+      - 'data/kinetics/kinetics600/validate.csv'
+      - 'data/kinetics/kinetics600/test.csv'
+      - 'data/kinetics/kinetics700/train.csv'
+      - 'data/kinetics/kinetics700/validate.csv'
+      - 'data/kinetics/kinetics700/test.csv'
+OUTPUT_DIR: '/data/01/action_dataset/kinetics/videos'

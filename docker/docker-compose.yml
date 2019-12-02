@@ -1,0 +1,61 @@
+version: '2.0'
+
+volumes:
+  dev:
+    driver: local
+    driver_opts:
+      device: "/home/nounique/_GIT_REPO/ActionRecognitionDatasets"
+      o: bind
+      type: none
+
+services:
+  dev:
+    build:
+      context: .
+      dockerfile: ./Dockerfile_dev
+    environment:
+      - PYTHONPATH=/home/nounique/dev
+      - PYTHONUNBUFFERED=0
+      - DISPLAY=unix:0
+    working_dir: /home/nounique/dev
+    user: nounique
+    network_mode: host
+    ports:
+      - "2224:2224"
+      - "8080:8080"
+    privileged: true
+    volumes:
+      - /dbstore_ssd:/data/01/action_dataset:rw
+      - dev:/home/nounique/dev:rw
+      - ~:/home/nounique
+#      - ./python2_packages:/usr/local/lib/python2.7/dist-packages:rw
+#      - ./python3_packages:/usr/local/lib/python3.5/dist-packages:rw
+      # X11 forwarding
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw # to render desktop in host machine
+    devices:
+      - /dev/nvidia0:/dev/nvidia0
+      - /dev/nvidiactl:/dev/nvidiactl
+      - /dev/nvidia-uvm:/dev/nvidia-uvm
+      #- /dev/video0:/dev/video0 # to capture webcam device
+    entrypoint:
+      - /bin/bash
+    stdin_open: true
+    tty: true
+    shm_size: 32G
+
+  tensorboard:
+    build:
+      context: .
+      dockerfile: ./Dockerfile_dev
+    working_dir: /home/nounique/dev
+    user: nounique
+    ports:
+      - "6006:6006"
+    volumes:
+      - dev:/home/nounique/dev:rw
+    #entrypoint:
+    #  - /bin/bash
+    command: tensorboard --logdir /home/nounique/dev/checkpoints --host 0.0.0.0
+    stdin_open: true # -i(interactive) option in docker
+    tty: true # -t(tty) option in docker
+    shm_size: 4G
