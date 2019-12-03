@@ -25,6 +25,4 @@ def get_output_filename(video_id, output_dir, start_time, end_time):
 
 def drop_duplicates(annotations, output_dir):
     downloaded = list(map(os.path.basename, os.listdir(output_dir)))
-    for annotation in annotations:
-        if get_filename(*annotation) in downloaded:
-            annotations.remove(annotation)
+    return set(annotation for annotation in annotations if get_filename(*annotation) not in downloaded)

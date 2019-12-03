@@ -75,7 +75,7 @@ def main(cfg_name=None):
     parser = get_parser(cfg.DATASET.NAME, cfg.DATASET.ANNOTATION.TYPE)
     annotations = parser.parse_annotations(cfg.DATASET.ANNOTATION.FILES)
     if cfg.DROP_DUPLICATES:
-        drop_duplicates(annotations, cfg.OUTPUT_DIR)
+        annotations = drop_duplicates(annotations, cfg.OUTPUT_DIR)
 
     # Download all clips.
     if cfg.SHUFFLE:
