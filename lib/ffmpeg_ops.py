@@ -34,8 +34,12 @@ def probe_resolution(video):
     return width, height
 
 
-def encode_video(video, output_filename,
-                 width, height, start_time=None, end_time=None,
+_X264_PRESET_LIST = ['placebo', 'veryslow', 'slower', 'slow', 'medium',
+                     'fast', 'faster', 'veryfast', 'superfast', 'ultrafast']
+
+
+def encode_video(video, output_filename, width, height,
+                 start_time=None, end_time=None, x264_preset='veryfast',
                  resize=True, min_size=256):
 
     def _convert_to_sec(string):
@@ -76,7 +80,11 @@ def encode_video(video, output_filename,
             new_height = int(1. * height / width * min_size)
             new_height = int(new_height / 2) * 2
         command_scale.extend([
-            '-vf', 'scale={}x{}'.format(new_width, new_height)])
+            '-filter:v', 'scale={}:{}'.format(new_width, new_height)])
+
+    assert isinstance(x264_preset, str), "x264_preset must be string"
+    if x264_preset not in _X264_PRESET_LIST:
+        raise ValueError("{} is not supported x264 preset".format(x264_preset))
 
     command = [
         'ffmpeg',
@@ -86,7 +94,7 @@ def encode_video(video, output_filename,
         '-i', '"{}"'.format(video),
         ] + command_scale + [
         '-codec:v', 'libx264',
-        '-preset:v', 'ultrafast',
+        '-preset:v', x264_preset,
         '-codec:a', 'aac',
         output_filename,
     ]

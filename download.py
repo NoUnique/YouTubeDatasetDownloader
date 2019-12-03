@@ -30,7 +30,8 @@ from lib.parser.parser_factory import get_parser
 from lib.config_ops import load_config
 
 
-def download_clip(annotation, output_dir, min_size=256, num_attempts=10):
+def download_clip(annotation, output_dir,
+                  min_size=256, x264_preset='veryfast', num_attempts=10):
     video_id, start_time, end_time = annotation
 
     status = False
@@ -56,7 +57,7 @@ def download_clip(annotation, output_dir, min_size=256, num_attempts=10):
     try:
         encode_video(download_url, output_filename,
                      width, height, start_time, end_time,
-                     resize=True, min_size=min_size)
+                     x264_preset=x264_preset, resize=True, min_size=min_size)
     except subprocess.CalledProcessError as err:
         return status, err.output
 
@@ -84,12 +85,14 @@ def main(cfg_name=None):
         pool.map(partial(download_clip,
                          output_dir=cfg.OUTPUT_DIR,
                          min_size=cfg.MIN_SIZE,
+                         x264_preset=cfg.X264_PRESET,
                          num_attempts=cfg.NUM_ATTEMPTS), annotations)
     else:
         for annotation in annotations:
             download_clip(annotation,
                           output_dir=cfg.OUTPUT_DIR,
                           min_size=cfg.MIN_SIZE,
+                          x264_preset=cfg.X264_PRESET,
                           num_attempts=cfg.NUM_ATTEMPTS)
 
 
