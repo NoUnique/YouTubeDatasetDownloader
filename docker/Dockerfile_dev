@@ -198,11 +198,12 @@ RUN set -ex \
 
 
 ########################################
-# Bash
+# Bash & Vim
 ########################################
 RUN apk update \
  && apk add \
     bash \
+    vim \
     ;
 
 
@@ -214,5 +215,4 @@ RUN pip install \
     youtube-dl \
     pyyaml \
     yacs \
-    'git+https://github.com/facebookresearch/fvcore' \
     ;
