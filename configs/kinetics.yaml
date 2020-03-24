@@ -12,4 +12,4 @@ DATASET:
       - 'data/kinetics/kinetics700/train.csv'
       - 'data/kinetics/kinetics700/validate.csv'
       - 'data/kinetics/kinetics700/test.csv'
-OUTPUT_DIR: '/data/01/action_dataset/kinetics/videos'
+OUTPUT_DIR: '/data/kinetics/videos'

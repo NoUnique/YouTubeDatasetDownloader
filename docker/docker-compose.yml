@@ -25,7 +25,7 @@ services:
       - "8080:8080"
     privileged: true
     volumes:
-      - /dbstore_ssd:/data/01/action_dataset:rw
+      - /data:/data:rw
       - dev:/home/nounique/dev:rw
       - ~:/home/nounique
 #      - ./python2_packages:/usr/local/lib/python2.7/dist-packages:rw

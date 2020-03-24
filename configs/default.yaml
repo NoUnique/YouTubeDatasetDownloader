@@ -6,7 +6,7 @@ DATASET:
       - 'data/kinetics/kinetics400/train.csv'
       - 'data/kinetics/kinetics400/validate.csv'
       - 'data/kinetics/kinetics400/test.csv'
-OUTPUT_DIR: '/data/01/action_dataset/kinetics/videos'
+OUTPUT_DIR: '/data/kinetics/videos'
 NUM_WORKERS: 24
 DROP_DUPLICATES: true
 SHUFFLE: false
