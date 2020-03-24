@@ -4,7 +4,7 @@ volumes:
   dev:
     driver: local
     driver_opts:
-      device: "/home/nounique/_GIT_REPO/ActionRecognitionDatasets"
+      device: "/home/nounique/_GIT_REPO/YouTubeDatasetDownloader"
       o: bind
       type: none
 
@@ -32,11 +32,6 @@ services:
 #      - ./python3_packages:/usr/local/lib/python3.5/dist-packages:rw
       # X11 forwarding
       - /tmp/.X11-unix:/tmp/.X11-unix:rw # to render desktop in host machine
-    devices:
-      - /dev/nvidia0:/dev/nvidia0
-      - /dev/nvidiactl:/dev/nvidiactl
-      - /dev/nvidia-uvm:/dev/nvidia-uvm
-      #- /dev/video0:/dev/video0 # to capture webcam device
     entrypoint:
       - /bin/bash
     stdin_open: true
