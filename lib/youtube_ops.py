@@ -12,13 +12,17 @@ _URL_FORMAT = 'https://www.youtube.com/watch?v={}'
 _TARGET_FORMAT_ID = 18
 
 
-def get_youtube_info(video_id):
+def get_youtube_info(video_id, proxy=None):
     assert isinstance(video_id, str), "video_id must be string"
     assert len(video_id) == 11, 'video_identifier must have length 11'
 
     target_url = _URL_FORMAT.format(video_id)
 
-    with youtube_dl.YoutubeDL(dict(forceurl=True)) as ydl:
+    ydl_opts = {'forceurl': True}
+    if proxy:
+        ydl_opts['proxy'] = proxy
+
+    with youtube_dl.YoutubeDL(ydl_opts) as ydl:
         resp = ydl.extract_info(target_url, download=False)
         infos = resp['formats']
         for info in infos:
