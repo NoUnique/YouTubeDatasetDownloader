@@ -32,7 +32,7 @@ from lib.config_ops import load_config
 
 def download_clip(annotation, output_dir,
                   min_size=256, x264_preset='veryfast',
-                  num_attempts=10, proxy=None):
+                  num_attempts=10, format_id=18, proxy=None):
     video_id, start_time, end_time = annotation
 
     status = False
@@ -43,7 +43,8 @@ def download_clip(annotation, output_dir,
     # get direct url using youtube-dl
     while True:
         try:
-            download_url, width, height = get_youtube_info(video_id, proxy)
+            download_url, width, height = get_youtube_info(video_id,
+                                                           format_id, proxy)
             break
         except Exception as err:
             attempts += 1
@@ -88,6 +89,7 @@ def main(cfg_name=None):
                          min_size=cfg.MIN_SIZE,
                          x264_preset=cfg.X264_PRESET,
                          num_attempts=cfg.NUM_ATTEMPTS,
+                         format_id=cfg.FORMAT_ID,
                          proxy=cfg.PROXY), annotations)
     else:
         for annotation in annotations:
@@ -96,6 +98,7 @@ def main(cfg_name=None):
                           min_size=cfg.MIN_SIZE,
                           x264_preset=cfg.X264_PRESET,
                           num_attempts=cfg.NUM_ATTEMPTS,
+                          format_id=cfg.FORMAT_ID,
                           proxy=cfg.PROXY)
 
 

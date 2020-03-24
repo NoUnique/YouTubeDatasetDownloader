@@ -12,7 +12,7 @@ _URL_FORMAT = 'https://www.youtube.com/watch?v={}'
 _TARGET_FORMAT_ID = 18
 
 
-def get_youtube_info(video_id, proxy=None):
+def get_youtube_info(video_id, format_id=_TARGET_FORMAT_ID, proxy=None):
     assert isinstance(video_id, str), "video_id must be string"
     assert len(video_id) == 11, 'video_identifier must have length 11'
 
@@ -27,6 +27,6 @@ def get_youtube_info(video_id, proxy=None):
         infos = resp['formats']
         for info in infos:
             # 18 - 360p or 240p h264 encoded video (with audio)
-            if info['format_id'] == '18':
+            if info['format_id'] == str(format_id):
                 return info['url'], info['width'], info['height']
-        raise youtube_dl.DownloadError('There is no format_id=={}'.format(_TARGET_FORMAT_ID))
+        raise youtube_dl.DownloadError('There is no format_id=={}'.format(format_id))

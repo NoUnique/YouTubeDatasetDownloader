@@ -6,3 +6,7 @@ DATASET:
       - 'data/avspeech/avspeech_train.csv'
       - 'data/avspeech/avspeech_test.csv'
 OUTPUT_DIR: '/data/avspeech/videos'
+NUM_WORKERS: 10
+MIN_SIZE: 720
+NUM_ATTEMPTS: 1
+FORMAT_ID: 22
