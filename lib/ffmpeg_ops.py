@@ -94,7 +94,8 @@ def encode_video(video, output_filename, width, height,
         '-i', '"{}"'.format(video),
         ] + command_scale + [
         '-codec:v', 'libx264',
-        '-preset:v', x264_preset,
+        '-preset', x264_preset,
+        '-tune', 'fastdecode',
         '-codec:a', 'aac',
         output_filename,
     ]
