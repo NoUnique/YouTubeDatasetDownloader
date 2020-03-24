@@ -9,12 +9,14 @@
 import functools
 
 from lib.parser.parser_kinetics import KineticsParser
+from lib.parser.parser_avspeech import AVSpeechParser
 
 parser_map = {
     'kinetics': KineticsParser,
     'kinetics400': KineticsParser,
     'kinetics600': KineticsParser,
     'kinetics700': KineticsParser,
+    'avspeech': AVSpeechParser,
 }
 
 

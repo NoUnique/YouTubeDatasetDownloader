@@ -1,0 +1,8 @@
+DATASET:
+  NAME: avspeech
+  ANNOTATION:
+    TYPE: csv
+    FILES:
+      - 'data/avspeech/avspeech_train.csv'
+      - 'data/avspeech/avspeech_test.csv'
+OUTPUT_DIR: '/data/avspeech/videos'
