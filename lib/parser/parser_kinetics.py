@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-    parser_factory to parse annotations of various datasets.
+    Kinetics dataset parser.
 
     Author : NoUnique (kofmap@gmail.com)
     Copyright (c) 2019. All Rights Reserved by NoUnique.
