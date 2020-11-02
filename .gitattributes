@@ -1,3 +1,4 @@
 data/kinetics/kinetics700/train.json filter=lfs diff=lfs merge=lfs -text
 data/kinetics/kinetics600/train.json filter=lfs diff=lfs merge=lfs -text
 data/avspeech/avspeech_train.csv filter=lfs diff=lfs merge=lfs -text
+data/kinetics/kinetics700_2020/train.json filter=lfs diff=lfs merge=lfs -text
